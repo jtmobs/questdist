@@ -10,7 +10,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "babel . -d dist --ignore node_modules --verbose",
     "start:instrumented": "nyc node index.js",
     "start:coverage": "c8 --reporter=html --reporter=text node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
