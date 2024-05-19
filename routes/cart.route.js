@@ -1,0 +1,31 @@
+"use strict";
+
+/* external import */
+var express = require("express");
+
+/* middleware imports */
+var verify = require("../middleware/verify.middleware");
+var authorize = require("../middleware/authorize.middleware");
+
+/* internal import */
+var cartController = require("../controllers/cart.controller");
+
+/* router level connection */
+var router = express.Router();
+
+/* router methods integration */
+
+// add to cart
+router.post("/add-to-cart", verify, authorize("buyer"), cartController.addToCart);
+
+// get from cart
+router.get("/get-from-cart", verify, authorize("admin"), cartController.getFromCart);
+
+// update cart
+router.patch("/update-cart/:id", verify, authorize("buyer"), cartController.updateCart);
+
+// delete cart
+router["delete"]("/delete-cart/:id", verify, authorize("buyer"), cartController.deleteCart);
+
+/* export cart router */
+module.exports = router;
